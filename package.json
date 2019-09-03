@@ -1,0 +1,30 @@
+{
+    "name": "@teamhive/google-analytics-helper",
+    "version": "0.0.1",
+    "description": "Helper for Google Analytics including support for offline caching",
+    "author": "Sean Bannigan",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TeamHive/google-analytics-helper.git"
+    },
+    "bugs": {
+        "url": "https://github.com/TeamHive/google-analytics-helper/issues"
+    },
+    "homepage": "https://github.com/TeamHive/google-analytics-helper#readme",
+    "main": "dist/index.js",
+    "typings": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "prepare": "npm run build",
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@types/google.analytics": "0.0.40"
+    },
+    "devDependencies": {
+        "typescript": "^3.6.2"
+    }
+}
