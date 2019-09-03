@@ -1,3 +1,5 @@
+[![NPM version](https://img.shields.io/npm/v/@teamhive/google-analytics-helper.svg)](https://npmjs.org/package/@teamhive/google-analytics-helper) [![NPM downloads](https://img.shields.io/npm/dm/@teamhive/google-analytics-helper.svg)](https://npmjs.org/package/@teamhive/google-analytics-helper)
+
 # Google Analytics Helper
 
 This Google Analytics Helper is an easy way to add Google Analytics with offline tracking support to any single-page app.
