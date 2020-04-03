@@ -1,6 +1,6 @@
 {
     "name": "@teamhive/google-analytics-helper",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Helper for Google Analytics including support for offline caching",
     "author": "Sean Bannigan",
     "license": "MIT",
