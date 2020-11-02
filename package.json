@@ -1,6 +1,6 @@
 {
     "name": "@teamhive/google-analytics-helper",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "description": "Helper for Google Analytics including support for offline caching",
     "author": "Sean Bannigan",
     "license": "MIT",
@@ -21,10 +21,8 @@
         "prepare": "npm run build",
         "build": "tsc"
     },
-    "dependencies": {
-        "@types/google.analytics": "0.0.40"
-    },
     "devDependencies": {
-        "typescript": "^3.6.2"
+        "@types/google.analytics": "0.0.40",
+        "typescript": "^3.8.3"
     }
 }

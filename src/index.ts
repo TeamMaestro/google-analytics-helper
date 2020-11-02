@@ -1,8 +1,11 @@
 export declare var ga: UniversalAnalytics.ga;
 
-export async function initalizeGoogleAnalytics(analyticsId: string, options?: {
-    clientId?: string
-}) {
+export async function initializeGoogleAnalytics(
+    analyticsId: string,
+    options?: {
+        clientId?: string;
+    }
+) {
     const script = document.createElement('script');
     script.innerHTML = `
         (function (i, s, o, g, r, a, m) {
@@ -39,7 +42,7 @@ export async function initalizeGoogleAnalytics(analyticsId: string, options?: {
         try {
             await checkEndpoint();
             sendBatchHits();
-        } catch { }
+        } catch {}
     }
 
     // Attempt to send hits whenever the app comes back online
@@ -48,7 +51,7 @@ export async function initalizeGoogleAnalytics(analyticsId: string, options?: {
             try {
                 await checkEndpoint();
                 sendBatchHits();
-            } catch { }
+            } catch {}
         }
     });
 }
@@ -129,19 +132,21 @@ async function sendBatchHits() {
             try {
                 const response = await fetch('https://www.google-analytics.com/batch', {
                     method: 'POST',
-                    body: chunk.map((hit) => {
-                        if (hit.timestamp) {
-                            // Calculate how many miliseconds from now that the hit occured
-                            let qt = Math.round((currentTimestamp - hit.timestamp) / 1000) * 1000;
-                            // If the hit timestamp was more than 4 hours ago, just set it to 4 hours so it doesn't get dropped
-                            // (https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#qt)
-                            if (qt > 14400000) {
-                                qt = 14400000;
+                    body: chunk
+                        .map((hit) => {
+                            if (hit.timestamp) {
+                                // Calculate how many miliseconds from now that the hit occured
+                                let qt = Math.round((currentTimestamp - hit.timestamp) / 1000) * 1000;
+                                // If the hit timestamp was more than 4 hours ago, just set it to 4 hours so it doesn't get dropped
+                                // (https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#qt)
+                                if (qt > 14400000) {
+                                    qt = 14400000;
+                                }
+                                hit.payload = `${hit.payload}&qt=${qt}`;
                             }
-                            hit.payload = `${hit.payload}&qt=${qt}`;
-                        }
-                        return hit.payload;
-                    }).join('\n')
+                            return hit.payload;
+                        })
+                        .join('\n')
                 });
                 if (response.status !== 200) {
                     throw Error;
